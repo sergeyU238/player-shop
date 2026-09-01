@@ -1,0 +1,18 @@
+<div class="buy-vendor-token-login-input">
+  <mat-icon
+    class="buy-vendor-token-login-input__profile_icon"
+    svgIcon="profile"
+  ></mat-icon>
+  <div class="buy-vendor-token-login-input__input-wrapper">
+    <label for="login">Логин</label>
+    <input
+      id="login"
+      type="text"
+      [value]="value()"
+      (input)="valueChange($event)"
+    />
+  </div>
+  <div class="buy-vendor-token-login-input__info_icon">
+    <mat-icon svgIcon="info" matTooltip="Введите логин"></mat-icon>
+  </div>
+</div>

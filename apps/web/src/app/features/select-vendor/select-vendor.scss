@@ -1,0 +1,12 @@
+.select-vendor {
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
+  justify-content: space-between;
+
+  &--item {
+    //flex: 1;
+    max-width: 76px;
+    text-align: center;
+  }
+}

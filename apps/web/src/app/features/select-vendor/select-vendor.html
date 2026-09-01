@@ -1,0 +1,23 @@
+<div class="select-vendor">
+  @for(item of vendorList(); track item.id) {
+  <app-vendor-item
+    class="select-vendor--item"
+    [vendor]="item"
+    (click)="selectVendor(item)"
+  ></app-vendor-item>
+  }
+  <div
+    tabindex="0"
+    role="button"
+    class="select-vendor--item"
+    (click)="showMoreVendors()"
+  >
+    <img
+      ngSrc="/assets/vendor-icons/more-vendors.svg"
+      width="76"
+      height="76"
+      alt="еще N+"
+    />
+    <div>Eще N+</div>
+  </div>
+</div>

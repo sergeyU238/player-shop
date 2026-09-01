@@ -1,0 +1,106 @@
+:host {
+  display: block;
+}
+
+.buy-vendor-token-money-input {
+  --buy-vendor-token-money-input-background-color: #f4f5f7;
+  --buy-vendor-token-money-icon-color: #76829b;
+  --buy-vendor-token-login-text-color: #8a94a6;
+  --buy-vendor-token-login-active-text-color: #fff;
+  --buy-vendor-token-login-active-bg-color: #000;
+  --buy-vendor-token-login-icon-size: 20px;
+  --buy-vendor-token-login-big-icon-size: 36px;
+  --buy-vendor-token-login-waring-text-color: #ff4500;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  width: 100%;
+  height: 64px;
+  background: var(--buy-vendor-token-money-input-background-color);
+  border-radius: 10px;
+  color: var(--buy-vendor-token-login-text-color);
+  font-size: 15px;
+  font-weight: Bold;
+  box-sizing: border-box;
+
+  &__money_icon {
+    flex: 0 0 var(--buy-vendor-token-login-icon-size);
+    width: var(--buy-vendor-token-login-icon-size);
+    height: var(--buy-vendor-token-login-icon-size);
+    background: var(--buy-vendor-token-money-icon-color);
+    color: var(--buy-vendor-token-login-active-text-color);
+    border-radius: 50%;
+    padding: 1px 0 0 4px;
+    box-sizing: border-box;
+
+    mat-icon {
+      width: 12px;
+      height: 12px;
+      font-size: 7px;
+    }
+  }
+
+  &__info_icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 120px;
+    height: var(--buy-vendor-token-login-big-icon-size);
+    color: var(--buy-vendor-token-login-active-text-color);
+    box-sizing: border-box;
+
+    button {
+      width: var(--buy-vendor-token-login-big-icon-size);
+      height: var(--buy-vendor-token-login-big-icon-size);
+      color: var(--buy-vendor-token-login-text-color);
+      background: #e8eaed;
+      box-shadow: none;
+      padding: 6px 0 0 3px;
+
+      &.active {
+        background: var(--buy-vendor-token-login-active-bg-color);
+        color: var(--buy-vendor-token-login-active-text-color);
+      }
+
+      mat-icon {
+        width: calc(var(--buy-vendor-token-login-big-icon-size) / 2);
+        height: calc(var(--buy-vendor-token-login-big-icon-size) / 2);
+      }
+    }
+  }
+
+  &__input-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 500;
+      appearance: none;
+
+      &::placeholder {
+        opacity: 0;
+      }
+
+      &::-webkit-search-cancel-button {
+        appearance: none;
+      }
+    }
+  }
+
+  &.active {
+    .buy-vendor-token-money-input {
+      &__input-wrapper {
+        color: var(--buy-vendor-token-login-waring-text-color);
+      }
+    }
+  }
+}

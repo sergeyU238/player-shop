@@ -1,0 +1,19 @@
+.header {
+  --header-backround-color: #f2f4f7;
+  --header-profile-color: #76829b;
+
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 80px;
+  border-bottom: solid 1px var(--header-backround-color);
+  padding: 13px 40px 13px 232px;
+
+  &__profile {
+    width: 44px;
+    height: 44px;
+    background: var(--header-backround-color);
+    border-radius: 10px;
+    color: var(--header-profile-color);
+    box-shadow: none;
+  }
+}

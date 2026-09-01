@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  flex: 0 0 100%;
+  min-width: 0;
+  visibility: hidden;
+
+  &.active {
+    visibility: visible;
+  }
+}

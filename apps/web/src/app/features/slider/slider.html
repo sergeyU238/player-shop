@@ -1,0 +1,37 @@
+<div class="slider">
+  <div
+    [style.transform]="'translateX(-' + activeSlide() * 100 + '%)'"
+    class="slider--list"
+  >
+    <ng-content></ng-content>
+  </div>
+  <div class="slider--controls">
+    <button
+      class="slider--controls__prev"
+      matButton="outlined"
+      (click)="prev()"
+    >
+      <mat-icon svgIcon="arrow-left"></mat-icon>
+    </button>
+    <button
+      class="slider--controls__next"
+      matButton="outlined"
+      (click)="next()"
+    >
+      <mat-icon svgIcon="arrow-right"></mat-icon>
+    </button>
+  </div>
+  <div class="slider--nav">
+    @for(item of slides(); track $index) {
+    <a
+      tabindex="0"
+      role="button"
+      class="slider--nav__item"
+      (click)="setActiveSlide($index)"
+      [class.active]="$index === activeSlide()"
+    >
+      <mat-icon svgIcon="slider-item"></mat-icon>
+    </a>
+    }
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.nav--catalog-button {
+  --nav-black-color: #000;
+  --nav-white-color: #fff;
+
+  width: 120px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--nav-black-color);
+  color: var(--nav-white-color);
+  box-shadow: none;
+}

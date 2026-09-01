@@ -1,0 +1,40 @@
+<div
+  [class.invalid]="isInvalidValidValue()"
+  class="buy-vendor-token-money-input"
+>
+  <div class="buy-vendor-token-money-input__money_icon">
+    <mat-icon [svgIcon]="currentCurrency().icon"></mat-icon>
+  </div>
+  <div class="buy-vendor-token-money-input__input-wrapper">
+    <label for="money-input">Сумма</label>
+    <input
+      id="money-input"
+      type="number"
+      [value]="value()"
+      (input)="valueChange($event)"
+    />
+  </div>
+  <div class="buy-vendor-token-money-input__info_icon">
+    <button
+      [class.active]="currentCurrency().is(currencyCode.USD)"
+      matMiniFab
+      (click)="currencyChange(currencyList.USD)"
+    >
+      <mat-icon svgIcon="dollar"></mat-icon>
+    </button>
+    <button
+      [class.active]="currentCurrency().is(currencyCode.TENGE)"
+      matMiniFab
+      (click)="currencyChange(currencyList.TENGE)"
+    >
+      <mat-icon svgIcon="tenge"></mat-icon>
+    </button>
+    <button
+      [class.active]="currentCurrency().is(currencyCode.RUB)"
+      matMiniFab
+      (click)="currencyChange(currencyList.RUB)"
+    >
+      <mat-icon svgIcon="rub"></mat-icon>
+    </button>
+  </div>
+</div>

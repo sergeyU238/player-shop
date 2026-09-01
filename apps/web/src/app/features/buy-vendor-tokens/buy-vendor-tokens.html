@@ -1,0 +1,26 @@
+<div class="buy-vendor-tokens">
+  <div class="buy-vendor-tokens--code">
+    <app-buy-vendor-token-promo-code
+      [formField]="payForm.vendorAndPromoCode"
+    ></app-buy-vendor-token-promo-code>
+  </div>
+  <div class="buy-vendor-tokens--data">
+    <app-buy-vendor-token-login-input
+      class="col-5"
+      [formField]="payForm.login"
+    ></app-buy-vendor-token-login-input>
+    <app-buy-vendor-token-money-input
+      class="col-7"
+      [formField]="payForm.money"
+      (currencyChanged)="onCurrencyChanged($event)"
+    ></app-buy-vendor-token-money-input>
+  </div>
+  <div class="buy-vendor-tokens--action">
+    <button class="buy-vendor-tokens--action__button">
+      <span>Оплатить {{ paymentSum() }}</span>
+      @if (currentCurrency(); as currency) {
+      <mat-icon [svgIcon]="currency.icon"></mat-icon>
+      }
+    </button>
+  </div>
+</div>

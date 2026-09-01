@@ -1,0 +1,13 @@
+.app-container {
+  background: #dadada;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+
+  &--body {
+    width: 1280px;
+    background: #fff;
+    height: 100%;
+    border: solid 1px #f2f4f7;
+  }
+}

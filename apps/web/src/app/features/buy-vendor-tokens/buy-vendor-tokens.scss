@@ -1,0 +1,53 @@
+.buy-vendor-tokens {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  &--code {
+    flex: 0 0 290px;
+  }
+
+  &--data {
+    flex: 1 1 auto;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+
+    & > * {
+      flex: 1;
+    }
+
+    .col-5 {
+      flex: 5;
+    }
+
+    .col-7 {
+      flex: 7;
+    }
+  }
+
+  &--action {
+    flex: 0 0 auto;
+
+    &__button {
+      min-width: 200px;
+      height: 76px;
+      box-shadow: none;
+      color: #fff;
+      background-color: #000;
+      border-radius: 10px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 500;
+
+      mat-icon {
+        width: 18px;
+        height: 18px;
+        font-size: 18px;
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.vendor-item {
+  width: 100%;
+
+  div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

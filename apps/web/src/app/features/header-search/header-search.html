@@ -1,0 +1,33 @@
+<form class="header-search" (submit)="onSearch($event)">
+  <div class="header-search--field">
+    <div class="header-search--field__input-wrapper">
+      <input
+        #searchInput
+        matInput
+        type="search"
+        [formField]="form.value"
+        placeholder="Игра, приложение или услуга..."
+      />
+    </div>
+
+    <button
+      type="button"
+      matIconButton
+      class="header-search--field__favorite-button"
+      [class.active]="favorite()"
+      aria-label="Избранное"
+      (click)="toggleFavorite()"
+    >
+      <mat-icon svgIcon="heart"></mat-icon>
+    </button>
+  </div>
+
+  <button
+    type="submit"
+    matIconButton
+    class="header-search--submit-button"
+    aria-label="Поиск"
+  >
+    <mat-icon svgIcon="search"></mat-icon>
+  </button>
+</form>
