@@ -1,8 +1,10 @@
 <div class="buy-vendor-tokens">
   <div class="buy-vendor-tokens--code">
-    <app-buy-vendor-token-promo-code
-      [formField]="payForm.vendorAndPromoCode"
-    ></app-buy-vendor-token-promo-code>
+    <app-buy-vendor-token-vendor [formField]="payForm.vendor">
+      <app-buy-vendor-token-promo-code
+        [formField]="payForm.promoCode"
+      ></app-buy-vendor-token-promo-code>
+    </app-buy-vendor-token-vendor>
   </div>
   <div class="buy-vendor-tokens--data">
     <app-buy-vendor-token-login-input

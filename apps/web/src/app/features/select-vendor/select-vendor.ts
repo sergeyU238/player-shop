@@ -1,4 +1,4 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, effect, inject, output } from '@angular/core';
 import { Vendor } from './services/vendor';
 import { NgOptimizedImage } from '@angular/common';
 import { type VendorModel, VendorItem } from '../../entities/vendor';
@@ -11,11 +11,18 @@ import { type VendorModel, VendorItem } from '../../entities/vendor';
   providers: [Vendor],
 })
 export class SelectVendor {
-  public readonly vendorClick = output<VendorModel>();
+  public readonly vendorSelected = output<VendorModel>();
   protected readonly vendorList = inject(Vendor).getVendors();
 
+  constructor() {
+    effect(() => {
+      const fistVendor = this.vendorList()[0];
+      this.selectVendor(fistVendor);
+    });
+  }
+
   protected selectVendor(item: VendorModel) {
-    this.vendorClick.emit(item);
+    this.vendorSelected.emit(item);
   }
 
   protected showMoreVendors() {

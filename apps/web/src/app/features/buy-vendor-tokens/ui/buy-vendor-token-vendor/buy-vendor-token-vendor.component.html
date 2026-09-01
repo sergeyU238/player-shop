@@ -1,0 +1,23 @@
+<div class="buy-vendor-token-vendor">
+  @if (value(); as vendor) {
+    <div class="buy-vendor-token-vendor__logo">
+      <img
+        [ngSrc]="`/assets/vendor-icons/${vendor.logo}`"
+        [width]="76"
+        [height]="76"
+        [alt]="vendor.name"
+      />
+    </div>
+    <div class="buy-vendor-token-vendor__promo-wrapper">
+      <div class="buy-vendor-token-vendor__promo-wrapper--title">
+        <div>Пополнение {{ vendor.name }}</div>
+        <div class="buy-vendor-token-vendor__promo-wrapper--title-persentage">
+          5%
+        </div>
+      </div>
+      <div class="buy-vendor-token-vendor__promo-wrapper--code">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  }
+</div>
