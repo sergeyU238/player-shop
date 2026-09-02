@@ -16,25 +16,31 @@
   </div>
   <div class="buy-vendor-token-money-input__info_icon">
     <button
+      type="button"
+      aria-label="Доллар"
       [class.active]="currentCurrency().is(currencyCode.USD)"
       matMiniFab
       (click)="currencyChange(currencyList.USD)"
     >
-      <mat-icon svgIcon="dollar"></mat-icon>
+      <mat-icon aria-hidden="true" svgIcon="dollar"></mat-icon>
     </button>
     <button
+      type="button"
+      aria-label="Тенге"
       [class.active]="currentCurrency().is(currencyCode.TENGE)"
       matMiniFab
       (click)="currencyChange(currencyList.TENGE)"
     >
-      <mat-icon svgIcon="tenge"></mat-icon>
+      <mat-icon aria-hidden="true" svgIcon="tenge"></mat-icon>
     </button>
     <button
+      type="button"
+      aria-label="Рубль"
       [class.active]="currentCurrency().is(currencyCode.RUB)"
       matMiniFab
       (click)="currencyChange(currencyList.RUB)"
     >
-      <mat-icon svgIcon="rub"></mat-icon>
+      <mat-icon aria-hidden="true" svgIcon="rub"></mat-icon>
     </button>
   </div>
 </div>

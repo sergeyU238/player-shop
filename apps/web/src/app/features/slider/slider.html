@@ -7,18 +7,22 @@
   </div>
   <div class="slider--controls">
     <button
+      type="button"
+      aria-label="преведущий слайд"
       class="slider--controls__prev"
       matButton="outlined"
       (click)="prev()"
     >
-      <mat-icon svgIcon="arrow-left"></mat-icon>
+      <mat-icon aria-hidden="true" svgIcon="arrow-left"></mat-icon>
     </button>
     <button
+      type="button"
+      aria-label="следующий слайд"
       class="slider--controls__next"
       matButton="outlined"
       (click)="next()"
     >
-      <mat-icon svgIcon="arrow-right"></mat-icon>
+      <mat-icon aria-hidden="true" svgIcon="arrow-right"></mat-icon>
     </button>
   </div>
   <div class="slider--nav">
@@ -26,11 +30,12 @@
     <a
       tabindex="0"
       role="button"
+      aria-label="Выбрать вендор"
       class="slider--nav__item"
       (click)="setActiveSlide($index)"
       [class.active]="$index === activeSlide()"
     >
-      <mat-icon svgIcon="slider-item"></mat-icon>
+      <mat-icon aria-hidden="true" svgIcon="slider-item"></mat-icon>
     </a>
     }
   </div>

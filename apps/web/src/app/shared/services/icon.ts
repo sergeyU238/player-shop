@@ -15,6 +15,7 @@ const Icons = {
   tenge: 'tenge',
   rub: 'rub',
   down: 'down',
+  navArrowRight: 'nav-arrow-right',
 };
 
 @Service()

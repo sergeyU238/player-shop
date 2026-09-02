@@ -1,4 +1,11 @@
-<button class="nav--catalog-button" matFab extended>
-  <mat-icon svgIcon="catalog"></mat-icon>
+<button
+  type="button"
+  aria-label="Каталог"
+  class="nav--catalog-button"
+  matFab
+  extended
+  (click)="openNavPopup()"
+>
+  <mat-icon aria-hidden="true" svgIcon="catalog"></mat-icon>
   Каталог
 </button>

@@ -1,0 +1,17 @@
+<div class="nav-list-group">
+  @if (currentGroup(); as currentGroup) {
+  <h3 class="nav-list-group__title">
+    <a [routerLink]="currentGroup.url">
+      <span>{{ currentGroup.name }}</span>
+      <mat-icon svgIcon="nav-arrow-right"></mat-icon>
+    </a>
+  </h3>
+  <ul class="nav-list-group__list">
+    @for(item of subItems(); track item.id) {
+    <li>
+      <a [routerLink]="item.url">{{ item.name }}</a>
+    </li>
+    }
+  </ul>
+  }
+</div>

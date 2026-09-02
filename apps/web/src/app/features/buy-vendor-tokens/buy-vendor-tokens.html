@@ -18,10 +18,14 @@
     ></app-buy-vendor-token-money-input>
   </div>
   <div class="buy-vendor-tokens--action">
-    <button class="buy-vendor-tokens--action__button">
+    <button
+      type="button"
+      class="buy-vendor-tokens--action__button"
+      aria-label="Оплатить"
+    >
       <span>Оплатить {{ paymentSum() }}</span>
       @if (currentCurrency(); as currency) {
-      <mat-icon [svgIcon]="currency.icon"></mat-icon>
+      <mat-icon aria-hidden="true" [svgIcon]="currency.icon"></mat-icon>
       }
     </button>
   </div>

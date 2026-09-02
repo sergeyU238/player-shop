@@ -1,0 +1,27 @@
+<div class="nav-list" role="menuitem">
+  <div class="nav-list__left">
+    <ul class="nav-list__left--list">
+      @for(item of nav().getLevel(); track item.id) {
+      <li [class.active]="item.id === activeNav()?.id">
+        <button
+          type="button"
+          [aria-label]="item.name"
+          (click)="setActiveNav(item)"
+        >
+          <span>{{ item.name }}</span>
+          <mat-icon aria-hidden="true" svgIcon="nav-arrow-right"></mat-icon>
+        </button>
+      </li>
+      }
+    </ul>
+  </div>
+  <div class="nav-list__right">
+    @if (activeNav(); as activeNav) { @for(subItem of
+    nav().getLevel(activeNav.id); track subItem.id) {
+    <app-nav-list-group
+      class="nav-list__right--item"
+      [currentGroup]="subItem"
+    ></app-nav-list-group>
+    } }
+  </div>
+</div>

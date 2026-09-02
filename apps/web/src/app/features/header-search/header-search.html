@@ -18,7 +18,7 @@
       aria-label="Избранное"
       (click)="toggleFavorite()"
     >
-      <mat-icon svgIcon="heart"></mat-icon>
+      <mat-icon aria-hidden="true" svgIcon="heart"></mat-icon>
     </button>
   </div>
 
@@ -28,6 +28,6 @@
     class="header-search--submit-button"
     aria-label="Поиск"
   >
-    <mat-icon svgIcon="search"></mat-icon>
+    <mat-icon aria-hidden="true" svgIcon="search"></mat-icon>
   </button>
 </form>

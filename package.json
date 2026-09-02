@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "build:web": "nx build web --configuration=production",
+    "serve:web": "npx serve -s dist/apps/web/browser -l 4200",
+    "preview:web": "npm run build:web && npm run serve:web"
   },
   "private": true,
   "devDependencies": {
