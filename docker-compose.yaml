@@ -2,6 +2,8 @@ services:
   postgres:
     image: postgres
     ports:
-      - '5432:5433'
+      - '5432:5432'
     environment:
+      POSTGRES_USER: nest_user
+      POSTGRES_DB: player_shop
       POSTGRES_PASSWORD: W-ya8dJBSJ2k
