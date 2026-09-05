@@ -12,46 +12,71 @@ datasource db {
   provider = "postgresql"
 }
 
+model Currency {
+  currencyCode String       @unique
+  name         String
+  icon         String
+  products     Products[]
+  promocodes   Promocodes[]
+}
+
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
   password  String
   name      String
   role      String
-  createdAt DateTime @default(now())
+  createdAt DateTime   @default(now())
+  BuedKeys  BuedKeys[]
 }
 
 model Products {
-  id        Int      @id @default(autoincrement())
-  name      String
-  sky       String
-  type      String
-  price     Decimal
-  currency  String
-  image     String
-  createdAt DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  name         String
+  sku          String   @unique
+  type         String
+  price        Decimal
+  currencyCode String
+  image        String
+  createdAt    DateTime @default(now())
+
+  currency   Currency     @relation(fields: [currencyCode], references: [currencyCode])
+  vendorKeys VendorKeys[]
 }
 
 model VendorKeys {
-  id        Int      @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   value     String
-  userd     Boolean  @default(false)
-  createdAt DateTime @default(now())
+  sku       String
+  used      Boolean    @default(false)
+  createdAt DateTime   @default(now())
+  BuedKeys  BuedKeys[]
+
+  skuProduct Products @relation(fields: [sku], references: [sku])
 }
 
-model BuedKyes {
+model BuedKeys {
   id          Int      @id @default(autoincrement())
   userId      Int
   vendorKeyId Int
-  promoCodeId Int
+  promoCodeId Int?
   buyedAt     DateTime @default(now())
+
+  user      User        @relation(fields: [userId], references: [id])
+  vendorKey VendorKeys  @relation(fields: [vendorKeyId], references: [id])
+  promoCode Promocodes? @relation(fields: [promoCodeId], references: [id])
 }
 
 model Promocodes {
-  id        Int      @id @default(autoincrement())
-  code      String
-  discount  Int
-  limit     Int
-  used      Int
-  createdAt DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  code         String   @unique
+  discount     Int
+  currencyCode String?
+  isPercent    Boolean
+  limit        Int
+  used         Int
+  createdAt    DateTime @default(now())
+
+  currency Currency?  @relation(fields: [currencyCode], references: [currencyCode])
+  BuedKeys BuedKeys[]
 }

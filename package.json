@@ -6,7 +6,13 @@
     "prepare": "husky",
     "build:web": "nx build web --configuration=production",
     "serve:web": "npx serve -s dist/apps/web/browser -l 4200",
-    "preview:web": "npm run build:web && npm run serve:web"
+    "preview:web": "npm run build:web && npm run serve:web",
+    "build:api": "nx run api:build",
+    "serve:api": "nx run api:serve",
+    "generate-prisma": "nx run database:generate-prisma",
+    "migrate-prisma": "nx run database:migrate-prisma",
+    "seed-prisma": "nx run database:seed-prisma",
+    "database-structure-update": "npm run generate-prisma && npm run migrate-prisma && npm run seed-prisma"
   },
   "private": true,
   "devDependencies": {
