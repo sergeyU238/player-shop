@@ -18,16 +18,17 @@ model Currency {
   icon         String
   products     Products[]
   promocodes   Promocodes[]
+  payments     Payment[]
 }
 
 model User {
-  id        Int        @id @default(autoincrement())
-  email     String     @unique
-  password  String
-  name      String
-  role      String
-  createdAt DateTime   @default(now())
-  BuedKeys  BuedKeys[]
+  id              Int               @id @default(autoincrement())
+  email           String            @unique
+  password        String
+  name            String
+  role            String
+  createdAt       DateTime          @default(now())
+  vendorKeyOrders VendorKeyOrders[]
 }
 
 model Products {
@@ -35,36 +36,26 @@ model Products {
   name         String
   sku          String   @unique
   type         String
-  price        Decimal
+  price        Decimal  @db.Decimal(10, 2)
   currencyCode String
   image        String
   createdAt    DateTime @default(now())
 
-  currency   Currency     @relation(fields: [currencyCode], references: [currencyCode])
-  vendorKeys VendorKeys[]
+  currency        Currency          @relation(fields: [currencyCode], references: [currencyCode])
+  vendorKeys      VendorKeys[]
+  vendorKeyOrders VendorKeyOrders[]
 }
 
+// коды пополнения
 model VendorKeys {
-  id        Int        @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   value     String
   sku       String
-  used      Boolean    @default(false)
-  createdAt DateTime   @default(now())
-  BuedKeys  BuedKeys[]
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
 
-  skuProduct Products @relation(fields: [sku], references: [sku])
-}
-
-model BuedKeys {
-  id          Int      @id @default(autoincrement())
-  userId      Int
-  vendorKeyId Int
-  promoCodeId Int?
-  buyedAt     DateTime @default(now())
-
-  user      User        @relation(fields: [userId], references: [id])
-  vendorKey VendorKeys  @relation(fields: [vendorKeyId], references: [id])
-  promoCode Promocodes? @relation(fields: [promoCodeId], references: [id])
+  skuProduct      Products          @relation(fields: [sku], references: [sku])
+  vendorKeyOrders VendorKeyOrders[]
 }
 
 model Promocodes {
@@ -77,6 +68,36 @@ model Promocodes {
   used         Int
   createdAt    DateTime @default(now())
 
-  currency Currency?  @relation(fields: [currencyCode], references: [currencyCode])
-  BuedKeys BuedKeys[]
+  currency        Currency?         @relation(fields: [currencyCode], references: [currencyCode])
+  vendorKeyOrders VendorKeyOrders[]
+}
+
+// купленные коды пополнения + процесс покупки
+model VendorKeyOrders {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  productId   Int
+  vendorKeyId Int?
+  promoCodeId Int?
+  updatedAt   DateTime @updatedAt
+  status      String // created | ready | wait_for_key
+
+  user      User        @relation(fields: [userId], references: [id])
+  vendorKey VendorKeys? @relation(fields: [vendorKeyId], references: [id])
+  promoCode Promocodes? @relation(fields: [promoCodeId], references: [id])
+  product   Products    @relation(fields: [productId], references: [id])
+}
+
+model Payment {
+  id           Int      @id @default(autoincrement())
+  eventId      String   @unique
+  orderId      Int // VendorKeyOrders.id |
+  orderType    String // vendor-key
+  status       String // created | paid | failed
+  amount       Decimal  @db.Decimal(10, 2)
+  currencyCode String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  currency Currency @relation(fields: [currencyCode], references: [currencyCode])
 }
