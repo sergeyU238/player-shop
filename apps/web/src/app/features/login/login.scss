@@ -1,0 +1,20 @@
+.login {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &--title {
+      font-size: 24px;
+      color: #000;
+    }
+  }
+
+  &__user {
+    font-size: 18px;
+
+    span {
+      font-weight: bold;
+    }
+  }
+}

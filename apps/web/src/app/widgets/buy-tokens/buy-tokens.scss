@@ -1,9 +1,17 @@
 .buy-tokens {
-  padding: 0 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 16px;
 
   &__pay-form,
   &__select-vendor {
     display: block;
-    margin: 20px 0;
+
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
   }
 }

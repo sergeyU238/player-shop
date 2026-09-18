@@ -6,13 +6,15 @@
     "prepare": "husky",
     "build:web": "nx build web --configuration=production",
     "serve:web": "npx serve -s dist/apps/web/browser -l 4200",
+    "serve:web:dev": "npx run web:serve",
     "preview:web": "npm run build:web && npm run serve:web",
     "build:api": "nx run api:build",
     "serve:api": "nx run api:serve",
     "generate-prisma": "nx run database:generate-prisma",
     "migrate-prisma": "nx run database:migrate-prisma",
     "seed-prisma": "nx run database:seed-prisma",
-    "database-structure-update": "npm run generate-prisma && npm run migrate-prisma && npm run seed-prisma"
+    "database-structure-update": "npm run generate-prisma && npm run migrate-prisma && npm run seed-prisma",
+    "serve:local": "nx run-many -t serve --projects=api,web"
   },
   "private": true,
   "devDependencies": {
@@ -84,6 +86,8 @@
     "@nestjs/jwt": "^12.0.1",
     "@nestjs/passport": "^12.0.0",
     "@nestjs/platform-express": "^11.0.0",
+    "@ngrx/operators": "^22.0.0",
+    "@ngrx/signals": "^22.0.0",
     "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "^7.10.0",
     "axios": "^1.6.0",

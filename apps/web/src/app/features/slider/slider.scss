@@ -1,6 +1,6 @@
 .slider {
   --slider-black-color: #000;
-  --slider-white-color: #fff;
+  --slider-white-color: #f2f4f7;
   --slider-button-color: #e5e9f1;
   --slider-boder-radius: 10px;
 
@@ -44,7 +44,8 @@
       bottom: 0;
       right: 0;
       border-top-right-radius: var(--slider-boder-radius);
-      box-shadow: 0 calc(var(--slider-boder-radius) * -1) 0 0 #fff;
+      box-shadow: 0 calc(var(--slider-boder-radius) * -1) 0 0
+        var(--slider-white-color);
       transform: translateY(100%);
     }
 
@@ -53,7 +54,7 @@
       top: 0;
 
       border-radius: 0 10px 0 0;
-      box-shadow: 10px 0 0 0 #fff;
+      box-shadow: 10px 0 0 0 var(--slider-white-color);
     }
 
     &__prev,

@@ -4,6 +4,8 @@
     aria-label="Профиль пользователя"
     class="header__profile"
     matFab
+    [title]="user()?.name ?? 'Профиль пользователя'"
+    (click)="openLoginPopup()"
   >
     <mat-icon aria-hidden="true" svgIcon="profile"></mat-icon>
   </button>

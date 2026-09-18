@@ -1,0 +1,52 @@
+<dl class="buy-product-price-summary">
+  @if (promoCode(); as promoCode) {
+    <div class="buy-product-price-summary__price-row">
+      <dt>Цена</dt>
+      <dd>
+        <span class="buy-product-price-summary__price-row--price">{{
+          product().price
+        }}</span>
+        <span class="buy-product-price-summary__price-row--currency">
+          <app-currency-icon
+            [currencyCode]="product().currencyCode"
+          ></app-currency-icon>
+        </span>
+      </dd>
+    </div>
+
+    <div class="buy-product-price-summary__price-row">
+      <dt>Скидка</dt>
+      <dd>
+        <span class="buy-product-price-summary__price-row--price"
+          >-{{ promoCode.discount }}</span
+        >
+        @if (promoCode.isPercent) {
+          <span class="buy-product-price-summary__price-row--currency">
+            <app-currency-icon
+              [currencyCode]="promoCode.currencyCode"
+            ></app-currency-icon>
+          </span>
+        } @else {
+          <span class="buy-product-price-summary__price-row--percent">%</span>
+        }
+      </dd>
+    </div>
+  }
+  @if (price(); as price) {
+    <div
+      class="buy-product-price-summary__price-row buy-product-price-summary__price-row--total"
+    >
+      <dt>К оплате</dt>
+      <dd>
+        <span class="buy-product-price-summary__price-row--price">{{
+          price.amount
+        }}</span>
+        <span class="buy-product-price-summary__price-row--currency">
+          <app-currency-icon
+            [currencyCode]="price.currencyCode"
+          ></app-currency-icon>
+        </span>
+      </dd>
+    </div>
+  }
+</dl>

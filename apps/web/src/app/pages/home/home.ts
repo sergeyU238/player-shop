@@ -3,10 +3,11 @@ import { Header } from '../../widgets/header/header';
 import { Slider, Slide } from '../../features/slider';
 import { BuyTokens } from '../../widgets/buy-tokens/buy-tokens';
 import { Meta, Title } from '@angular/platform-browser';
+import { DashboardProducts } from '../../widgets/dashboard-products/dashboard-products';
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Slider, Slide, BuyTokens],
+  imports: [Header, Slider, Slide, BuyTokens, DashboardProducts],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

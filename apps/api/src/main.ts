@@ -21,11 +21,12 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  // TODO: made it dev only
-  // app.enableCors({
-  //   origin: 'http://localhost:4200',
-  //   credentials: true,
-  // });
+  if (app.get(ConfigService).getOrThrow('NODE_ENV') === 'development') {
+    app.enableCors({
+      origin: 'http://localhost:4200',
+      credentials: true,
+    });
+  }
   const port = app.get(ConfigService).getOrThrow('PORT');
   await app.listen(port);
   Logger.log(

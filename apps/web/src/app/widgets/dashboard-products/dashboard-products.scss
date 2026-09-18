@@ -1,0 +1,34 @@
+.dashboard-products {
+  &__actions {
+    display: flex;
+    gap: 10px;
+
+    button {
+      box-shadow: none;
+      background: #f4f5f7;
+      color: #8a94a6;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 0 11px;
+      width: auto;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 1px;
+
+      .active,
+      &:hover {
+        background: #000;
+        color: #fff;
+      }
+
+      mat-icon {
+        width: 14px;
+        height: 14px;
+        line-height: 14px;
+        margin-right: 5px;
+      }
+    }
+  }
+}

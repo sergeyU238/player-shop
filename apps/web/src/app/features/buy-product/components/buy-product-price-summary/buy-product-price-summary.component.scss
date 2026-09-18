@@ -1,0 +1,23 @@
+.buy-product-price-summary {
+  margin: 0;
+
+  &__price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    dt,
+    dd {
+      margin: 0;
+    }
+
+    &--total {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+
+      font-weight: 600;
+    }
+  }
+}

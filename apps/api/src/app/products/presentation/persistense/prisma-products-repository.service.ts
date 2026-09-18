@@ -22,6 +22,9 @@ export class PrismaProductsRepositoryService {
   }
 
   async getPromoCode(promoCode: string) {
+    if (!promoCode) {
+      return null;
+    }
     const item = await this.prisma.promocodes.findUnique({
       where: {
         code: promoCode,

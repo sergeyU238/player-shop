@@ -7,7 +7,7 @@ const products = [
     type: 'topup',
     price: 500,
     currencyCode: 'RUB',
-    image: 'steam.svg',
+    image: 'default.png',
   },
   {
     sku: 'STEAM-TOPUP-1000',
@@ -15,7 +15,7 @@ const products = [
     type: 'topup',
     price: 1000,
     currencyCode: 'RUB',
-    image: 'steam.svg',
+    image: 'default.png',
   },
   {
     sku: 'STEAM-TOPUP-2500',
@@ -23,7 +23,7 @@ const products = [
     type: 'topup',
     price: 2500,
     currencyCode: 'RUB',
-    image: 'steam.svg',
+    image: 'default.png',
   },
   {
     sku: 'GIFT-ROBLOX-800',
@@ -31,7 +31,7 @@ const products = [
     type: 'giftcard',
     price: 890,
     currencyCode: 'RUB',
-    image: 'roblox.svg',
+    image: 'default.png',
   },
   {
     sku: 'GIFT-ROBLOX-1800',
@@ -39,7 +39,7 @@ const products = [
     type: 'giftcard',
     price: 1890,
     currencyCode: 'RUB',
-    image: 'roblox.svg',
+    image: 'default.png',
   },
 ];
 

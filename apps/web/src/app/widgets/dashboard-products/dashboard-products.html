@@ -1,0 +1,40 @@
+<div class="dashboard-products">
+  @if (recommendedProducts(); as recommendedProducts) {
+  <app-product-board
+    title="Популярные товары"
+    [list]="recommendedProducts"
+    (buyClick)="buyProduct($event)"
+  >
+    <div class="dashboard-products__actions">
+      <button matFab>
+        <mat-icon svgIcon="donat"></mat-icon>
+        Донат
+      </button>
+      <button matFab>
+        <mat-icon svgIcon="subscription"></mat-icon>
+        Подписки
+      </button>
+      <button matFab>
+        <mat-icon svgIcon="fings"></mat-icon>
+        Предметы
+      </button>
+      <button matFab>
+        <mat-icon svgIcon="accounts"></mat-icon>
+        Аккаунты
+      </button>
+      <button matFab>
+        <mat-icon svgIcon="key"></mat-icon>
+        Ключи
+      </button>
+      <button matFab>
+        <mat-icon svgIcon="game-currency"></mat-icon>
+        Игровая валюта
+      </button>
+      <button matFab>
+        <mat-icon svgIcon="unknown"></mat-icon>
+        Другое
+      </button>
+    </div>
+  </app-product-board>
+  }
+</div>

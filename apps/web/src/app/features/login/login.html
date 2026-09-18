@@ -1,0 +1,53 @@
+<div class="login">
+  @if (user(); as user) {
+  <div class="login__user">Добро пожаловать <span>{{ user.name }}</span>!</div>
+  } @else {
+  <form class="login__form" (submit)="onSubmit(); $event.preventDefault()">
+    <div class="login__form--title">Вход на сайт</div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Электронный адрес</mat-label>
+
+      <input
+        matInput
+        type="email"
+        autocomplete="email"
+        [formField]="loginForm.email"
+      />
+
+      @if (loginForm.email().touched() && loginForm.email().invalid()) {
+      <mat-error>
+        @for (error of loginForm.email().errors(); track error.kind) { {{
+        error.message }} }
+      </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Пароль</mat-label>
+
+      <input
+        matInput
+        type="password"
+        autocomplete="current-password"
+        [formField]="loginForm.password"
+      />
+
+      @if (loginForm.password().touched() && loginForm.password().invalid()) {
+      <mat-error>
+        @for (error of loginForm.password().errors(); track error.kind) { {{
+        error.message }} }
+      </mat-error>
+      }
+    </mat-form-field>
+
+    <button
+      matButton="outlined"
+      type="submit"
+      [disabled]="loginForm().invalid()"
+    >
+      Войти
+    </button>
+  </form>
+  }
+</div>

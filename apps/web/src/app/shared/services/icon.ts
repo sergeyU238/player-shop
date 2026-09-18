@@ -16,6 +16,13 @@ const Icons = {
   rub: 'rub',
   down: 'down',
   navArrowRight: 'nav-arrow-right',
+  donat: 'donat',
+  subscription: 'subscription',
+  fings: 'fings',
+  accounts: 'accounts',
+  key: 'key',
+  'game-currency': 'game-currency',
+  unknown: 'unknown',
 };
 
 @Service()

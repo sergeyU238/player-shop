@@ -1,0 +1,28 @@
+.buy-product {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+
+  &__left-col {
+    flex: 1;
+    max-width: calc(50% - 10px);
+  }
+
+  &__right-col {
+    flex: 1;
+
+    &--price-summary {
+      padding-bottom: 20px;
+      display: block;
+    }
+
+    &--pay-action {
+      color: #fff;
+      background: #000;
+      box-shadow: none;
+      width: 100%;
+      border-radius: 12px;
+      height: 43px;
+    }
+  }
+}

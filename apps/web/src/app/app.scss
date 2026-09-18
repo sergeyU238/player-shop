@@ -5,9 +5,10 @@
   min-height: 100vh;
 
   &--body {
+    --body-background: #f2f4f7e6;
+
     width: 1280px;
-    background: #fff;
+    background: var(--body-background);
     height: 100%;
-    border: solid 1px #f2f4f7;
   }
 }
