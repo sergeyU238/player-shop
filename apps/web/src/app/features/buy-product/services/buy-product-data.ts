@@ -4,13 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import type { Observable } from 'rxjs';
 
 export type BuyProductResult = {
-  status: 'ok' | 'error';
-  error: string;
+  item?: { id: number };
+  error?: string;
 };
 
 @Injectable()
 export class BuyProductData {
-  private readonly baseUrl = `${environment.API_URL}`;
+  private readonly baseUrl = `${environment.API_URL}/payments`;
   private readonly http = inject(HttpClient);
 
   buyProduct(
@@ -21,9 +21,6 @@ export class BuyProductData {
       productId,
       ...(promocode ? { promocode } : {}),
     };
-    return this.http.post<BuyProductResult>(
-      `${this.baseUrl}/payments/product`,
-      data,
-    );
+    return this.http.post<BuyProductResult>(`${this.baseUrl}/product`, data);
   }
 }

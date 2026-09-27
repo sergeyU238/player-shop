@@ -18,6 +18,7 @@ import type { TokenPayload } from '../dto/token-payload.interface';
 import type { User } from '@player-shop/database';
 import { Request } from 'express';
 import { AuthenticateQuery } from '../../applicaton/queries/authenticate.query';
+import type { UserModel } from '../../domain/user.model';
 
 @Controller('auth')
 export class AuthController {
@@ -39,7 +40,7 @@ export class AuthController {
   async login(
     @Body() dto: SingInDto,
     @Res({ passthrough: true }) res: Response,
-  ) {
+  ): Promise<UserModel> {
     return await this.commandBus.execute(
       new LoginCommand(dto.email, dto.password, res),
     );

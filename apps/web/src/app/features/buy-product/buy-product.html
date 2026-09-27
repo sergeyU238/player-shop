@@ -5,37 +5,14 @@
   ></app-product>
 
   <div class="buy-product__right-col">
-    <form [formRoot]="promoForm">
-      <mat-form-field appearance="outline">
-        <mat-label>Промокод</mat-label>
-
-        <input
-          matInput
-          type="email"
-          autocomplete="email"
-          [formField]="promoForm.code"
-        />
-
-        @if (promoForm.code().touched() && promoForm.code().invalid()) {
-        <mat-error>
-          @for (error of promoForm.code().errors(); track error.kind) { {{
-          error.message }} }
-        </mat-error>
-        }
-      </mat-form-field>
-      <app-buy-product-price-summary
-        class="buy-product__right-col--price-summary"
-        [product]="product()"
-        [promoCode]="promoCode()"
-      ></app-buy-product-price-summary>
-      <button
-        class="buy-product__right-col--pay-action"
-        type="submit"
-        matButton="outlined"
-        [disabled]="promoForm().invalid() || promoForm().submitting()"
-      >
-        Оплатить
-      </button>
-    </form>
+    @if (isPaymentError()) {
+    <div class="buy-product__right-col--payment-error">
+      Во время платежа произошла ошибка
+    </div>
+    }
+    <app-buy-product-form
+      [product]="product()"
+      (buyProductAction)="buyProduct($event)"
+    ></app-buy-product-form>
   </div>
 </div>

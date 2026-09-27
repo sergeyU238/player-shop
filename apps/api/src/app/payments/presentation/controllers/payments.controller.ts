@@ -21,6 +21,7 @@ import { PaymentResultDto } from '../dto/payment-result';
 import { PaymentResultCommand } from '../../application/commands/payment-result.command';
 import { PaymentStatus } from '../enum';
 import { BaseHttpException } from '../../../shared/http/exceptions/base-http-exception';
+import { ItemResponse } from '../../../shared/dto/item-response';
 
 @Controller('payments')
 export class PaymentController {
@@ -32,16 +33,17 @@ export class PaymentController {
   async productPaymentInitialization(
     @Body() { productId, promocode }: ProductPaymentDto,
     @CurrentUser() { userId }: CurrentUserInfo,
-  ) {
+  ): Promise<ItemResponse<{ id: number }>> {
+    let payment: { id: number };
     try {
-      await this.commandBus.execute(
+      payment = await this.commandBus.execute(
         new ProductPaymentInitializationCommand(userId, +productId, promocode),
       );
     } catch (error) {
-      throw new BaseHttpException(error);
+      return ItemResponse.create({ error });
     }
 
-    return { status: 'ok', error: null };
+    return ItemResponse.create({ item: { id: payment.id } });
   }
 
   @HttpCode(HttpStatus.OK)

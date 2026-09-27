@@ -34,7 +34,7 @@ export class PrismaVendorKeyOrderRepository {
     }
   }
 
-  async startOrderProcessing(orderId: number) {
+  private async startOrderProcessing(orderId: number) {
     try {
       const orders = await this.prisma.$queryRaw<
         VendorKeyOrders & { sku: Products['sku'] }[]
@@ -67,7 +67,10 @@ export class PrismaVendorKeyOrderRepository {
     return null;
   }
 
-  async updateOrderStatus(orderId: number, status: VendorKeyOrderStatus) {
+  private async updateOrderStatus(
+    orderId: number,
+    status: VendorKeyOrderStatus,
+  ) {
     return this.prisma.vendorKeyOrders.update({
       where: {
         id: orderId,
@@ -78,7 +81,7 @@ export class PrismaVendorKeyOrderRepository {
     });
   }
 
-  async updateVendorKey(orderId: number, vendorKeyId: number) {
+  private async updateVendorKey(orderId: number, vendorKeyId: number) {
     return this.prisma.vendorKeyOrders.update({
       where: {
         id: orderId,
@@ -90,7 +93,7 @@ export class PrismaVendorKeyOrderRepository {
     });
   }
 
-  async useVendorKeyFor(sku: string) {
+  private async useVendorKeyFor(sku: string) {
     try {
       const vendorKeyList = await this.prisma.$queryRaw<VendorKeys[]>`
         UPDATE "VendorKeys"

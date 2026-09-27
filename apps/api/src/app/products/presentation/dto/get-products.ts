@@ -1,11 +1,14 @@
-import { IsDecimal, IsNotEmpty } from 'class-validator';
+import { IsInt, IsNotEmpty } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class GetProductsDto {
-  @IsDecimal()
+  @Type(() => Number)
+  @IsInt()
   @IsNotEmpty()
-  page: string;
+  page: number;
 
-  @IsDecimal()
+  @Type(() => Number)
+  @IsInt()
   @IsNotEmpty()
-  limit: string;
+  limit: number;
 }

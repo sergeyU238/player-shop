@@ -1,9 +1,11 @@
-import { IsDecimal, IsNotEmpty, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class ProductPaymentDto {
-  @IsDecimal()
+  @Type(() => Number)
+  @IsInt()
   @IsNotEmpty()
-  productId: number | string;
+  productId: number;
 
   @IsString()
   promocode?: string;

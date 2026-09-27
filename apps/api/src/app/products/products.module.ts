@@ -4,15 +4,18 @@ import { PrismaProductsRepositoryService } from './presentation/persistense/pris
 import { GetProductsHandler } from './application/queries/get-products.handler';
 import { GetPromoCodeHandler } from './application/queries/get-promocode.handler';
 import { CqrsModule } from '@nestjs/cqrs';
+import { GetProductQueryHandler } from './application/queries/get-product.handler';
+import { UsePromoCodeHandler } from './application/commands/use-promocode.handler';
 
 @Module({
   imports: [CqrsModule],
-  exports: [PrismaProductsRepositoryService],
   controllers: [ProductController],
   providers: [
     PrismaProductsRepositoryService,
     GetProductsHandler,
     GetPromoCodeHandler,
+    GetProductQueryHandler,
+    UsePromoCodeHandler,
   ],
 })
 export class ProductsModule {}

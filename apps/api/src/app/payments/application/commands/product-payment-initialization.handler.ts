@@ -1,18 +1,26 @@
-import { CommandHandler, type ICommandHandler } from '@nestjs/cqrs';
+import {
+  CommandBus,
+  CommandHandler,
+  type ICommandHandler,
+  QueryBus,
+} from '@nestjs/cqrs';
 import { ProductPaymentInitializationCommand } from './product-payment-initialization.command';
 import { PrismaPaymentRepository } from '../../presentation/persistense/prisma-payment.repository';
-import { PrismaProductsRepositoryService } from '../../../products/presentation/persistense/prisma-products-repository.service';
 import { PaymentStatus, PaymentType } from '../../presentation/enum';
 import { PrismaVendorKeyOrderRepository } from '../../presentation/persistense/prisma-vendor-key-order.repository';
+import { GetProductQuery } from '../../../products/application/queries/get-product.query';
+import { UsePromoCodeCommand } from '../../../products/application/commands/use-promocode.command';
+import { PromoCode } from '../../../shared/models/promo-code.model';
 
 @CommandHandler(ProductPaymentInitializationCommand)
 export class ProductPaymentInitializationHandler
   implements ICommandHandler<ProductPaymentInitializationCommand>
 {
   constructor(
-    private readonly productRepository: PrismaProductsRepositoryService,
     private readonly paymentRepository: PrismaPaymentRepository,
     private readonly vendorKeyRepository: PrismaVendorKeyOrderRepository,
+    private readonly queryBus: QueryBus,
+    private readonly commandBus: CommandBus,
   ) {}
 
   async execute({
@@ -20,20 +28,18 @@ export class ProductPaymentInitializationHandler
     productId,
     promocode,
   }: ProductPaymentInitializationCommand) {
-    const product = await this.productRepository.getProductById(productId);
+    const product = await this.queryBus.execute(new GetProductQuery(productId));
     if (!product) {
       throw new Error('Product not found');
     }
-    let price = product.price.toNumber();
+    let price = product.price;
 
-    let promoCodeItem = null;
+    let promoCodeItem: PromoCode | null = null;
     if (promocode) {
-      promoCodeItem = await this.productRepository.usePromoCode(promocode);
-      price = PrismaProductsRepositoryService.applyPromoCode(
-        promoCodeItem,
-        price,
-        product.currencyCode,
+      promoCodeItem = await this.commandBus.execute(
+        new UsePromoCodeCommand(promocode),
       );
+      price = promoCodeItem.applyPromoCode(price, product.currencyCode);
     }
 
     const order = await this.vendorKeyRepository.createOrder(

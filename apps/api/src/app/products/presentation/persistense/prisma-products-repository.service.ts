@@ -64,7 +64,7 @@ export class PrismaProductsRepositoryService {
     }
   }
 
-  async usePromoCode(code: string): Promise<number> {
+  async usePromoCode(code: string): Promise<Promocodes> {
     return await this.prisma.$transaction(async (tx) => {
       let promoList;
       try {
@@ -82,7 +82,7 @@ export class PrismaProductsRepositoryService {
         throw new Error('Promo code not found');
       }
 
-      const promoCode = promoList['0'];
+      const promoCode: Promocodes = promoList['0'];
 
       if (promoCode.limit <= promoCode.used) {
         throw new Error('Promo code limit exceeded');

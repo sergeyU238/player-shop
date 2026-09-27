@@ -11,9 +11,7 @@ export class ProductController {
 
   @Get('list')
   async getProducts(@Query() { page, limit }: GetProductsDto) {
-    return this.queryBus.execute(
-      new GetProductsQuery(parseInt(page, 10), parseInt(limit, 10)),
-    );
+    return this.queryBus.execute(new GetProductsQuery(page, limit));
   }
 
   @Get('promocode')
